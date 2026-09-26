@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Moon 🌙</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#020204;color:#eee}
+body{font-family:Georgia,"Times New Roman",serif;display:flex;align-items:center;justify-content:center;padding:18px;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#fff 1px,transparent 1.5px);background-size:103px 117px,157px 173px;background-position:12px 22px,64px 87px}
+.card{width:min(720px,100%);position:relative;z-index:2;background:rgba(7,7,12,.9);border:1px solid #24242d;border-radius:22px;padding:34px 25px 28px;box-shadow:0 0 55px rgba(150,150,255,.08)}
+.moon{width:78px;height:78px;border-radius:50%;background:#f3efcf;margin:0 auto 18px;box-shadow:0 0 35px rgba(243,239,207,.28);position:relative}
+.moon:after{content:"";position:absolute;width:78px;height:78px;border-radius:50%;background:#07070c;left:23px;top:-9px}
+h1{text-align:center;font-weight:normal;font-size:clamp(27px,7vw,43px);letter-spacing:1px;margin:0}
+.sub{text-align:center;color:#888;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin:10px 0 28px}
+button{display:block;margin:auto;border:1px solid #444;background:#09090d;color:#eee;border-radius:999px;padding:12px 23px;font-family:inherit;cursor:pointer;transition:.25s}
+button:hover{background:#15151d;transform:scale(1.03)}
+#letter{display:none;font-size:clamp(17px,4vw,20px);line-height:1.9;color:#e8e8e8}
+#typed{white-space:pre-wrap;margin:0}
+.cursor{display:inline-block;width:7px;height:1.05em;background:#ddd;vertical-align:-2px;animation:blink .8s infinite}
+@keyframes blink{50%{opacity:0}}
+.final{text-align:center;font-size:clamp(26px,7vw,39px);margin:30px 0 10px}
+.signature{text-align:right;color:#999;font-style:italic;margin-top:20px}
+.footer{text-align:center;color:#4e4e55;font-size:11px;letter-spacing:1px;margin-top:27px}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="moon"></div>
+  <h1>For My Moon 🌙</h1>
+  <div class="sub">something I couldn't say out loud</div>
+
+  <button id="open">Open this for me</button>
+
+  <section id="letter">
+    <p id="typed"></p><span class="cursor" id="cursor"></span>
+  </section>
+
+  <div class="footer">made with feelings, not perfect words</div>
+</main>
+
+<script>
+const message = `I love you.
+
+I'm just not saying those three words.
+
+If you could peek into my mind, you would understand what I couldn't express to you through words or any other way.
+
+I may be childish sometimes, but you should know that it was only around you.
+
+When you're around me, I feel secure. My heart tells my mind:
+
+"You're safe. Feel free to be your inner child."
+
+You know how tough I am. How stubborn I can be.
+
+Even when you told me to move on from you, I didn't.
+
+I could have done that. But if I did, that would mean I lied to the only pure feeling I have.
+
+You're my last seven minutes. 🌙`;
+
+document.getElementById("open").onclick = () => {
+  document.getElementById("open").style.display = "none";
+  document.getElementById("letter").style.display = "block";
+
+  let i = 0;
+  const typed = document.getElementById("typed");
+  const cursor = document.getElementById("cursor");
+
+  function type() {
+    if (i < message.length) {
+      typed.textContent += message[i++];
+      setTimeout(type, message[i-1] === "\n" ? 500 : 27);
+    } else {
+      cursor.style.display = "none";
+
+      const final = document.createElement("div");
+      final.className = "final";
+      final.textContent = "You are my Moon. 🌙";
+      document.getElementById("letter").appendChild(final);
+
+      const sig = document.createElement("div");
+      sig.className = "signature";
+      sig.textContent = "— Petu";
+      document.getElementById("letter").appendChild(sig);
+    }
+  }
+  type();
+};
+</script>
+</body>
+</html>
