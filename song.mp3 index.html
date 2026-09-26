@@ -1,8 +1,10 @@
 <!-- Background Audio -->
 <audio id="bg-music" loop>
-  <source src="romantic-music.mp3" type="audio/mpeg">
+  <source src="song.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
-</audio><script>
+</audio>
+
+<script>
   document.addEventListener('click', function () {
     const audio = document.getElementById('bg-music');
     if (audio.paused) {
